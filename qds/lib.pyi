@@ -1,6 +1,5 @@
 from ctypes import c_uint32, pointer
 
-
 def load() -> QuartzDisplayServices: ...
 
 class QuartzDisplayServices:
