@@ -10,3 +10,9 @@ class QuartzDisplayServices:
         onlineDisplays: pointer[c_uint32],
         displayCount: pointer[c_uint32],
     ): ...
+    def CGGetActiveDisplayList(
+        self,
+        maxDisplays: c_uint32,
+        activeDisplays: pointer[c_uint32],
+        displayCount: pointer[c_uint32],
+    ): ...
