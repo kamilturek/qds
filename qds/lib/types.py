@@ -1,4 +1,7 @@
-from ctypes import Structure, c_double
+from ctypes import Structure, c_double, c_uint32
+
+CGDirectDisplayID = c_uint32
+CGError = int
 
 
 class CGSize(Structure):
