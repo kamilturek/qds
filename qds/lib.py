@@ -6,6 +6,8 @@ def load():
     LIBNAME = "ApplicationServices"
 
     if libpath := find_library(LIBNAME):
-        return CDLL(libpath)
+        lib = CDLL(libpath)
+        lib.CGMainDisplayID()  # Precheck
+        return lib
 
     raise OSError(f"Library {LIBNAME} not found.")
