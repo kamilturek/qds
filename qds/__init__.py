@@ -1,4 +1,4 @@
-from qds.bindings.quartz import (
+from qds.pyqds.main import (
     display_is_active,
     display_is_builtin,
     display_is_online,

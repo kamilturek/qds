@@ -1,6 +1,6 @@
 from ctypes import byref, c_uint32
 
-from ..lib.quartz import Quartz
+from qds.cqds.main import Quartz
 
 quartz = Quartz()
 
