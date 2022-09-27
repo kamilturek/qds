@@ -25,4 +25,4 @@ repos:
     rev: 'v0.11.0'
     hooks:
       - id: markdownlint
-        exclude: 'changelog.d/'
+        exclude: 'changelog.d/|CHANGELOG.md'
