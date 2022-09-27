@@ -65,27 +65,6 @@ def display_is_online(display_id: int) -> bool:
     return quartz.CGDisplayIsOnline(display_id)
 
 
-# def display_screen_size(display_id: int) -> Size:
-#     quartz.CGDisplayScreenSize.restype = CGSize
-#     size = quartz.CGDisplayScreenSize(c_uint32(display_id))
-#     return Size(width=size.width, height=size.height)
-
-
-# def display_bounds(display_id: int) -> Rect:
-#     quartz.CGDisplayBounds.restype = CGRect
-#     rect = quartz.CGDisplayBounds(c_uint32(display_id))
-#     return Rect(
-#         origin=Point(
-#             x=rect.origin.x,
-#             y=rect.origin.y,
-#         ),
-#         size=Size(
-#             width=rect.size.width,
-#             height=rect.size.height,
-#         ),
-#     )
-
-
 def display_pixels_wide(display_id: int) -> int:
     return quartz.CGDisplayPixelsWide(display_id)
 
