@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-qds"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Python wrapper for Quartz Display Services."
 authors = ["Kamil Turek <kamil.turek@hotmail.com>"]
 license = "MIT"
