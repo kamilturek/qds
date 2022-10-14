@@ -1,4 +1,4 @@
-from qds.pyqds.main import (
+from .api import (
     display_is_active,
     display_is_builtin,
     display_is_online,
@@ -6,7 +6,7 @@ from qds.pyqds.main import (
     display_pixels_wide,
     get_active_display_count,
     get_active_display_list,
+    get_main_display_id,
     get_online_display_count,
     get_online_display_list,
-    main_display_id,
 )
