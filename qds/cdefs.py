@@ -1,5 +1,7 @@
 from ctypes import CDLL, POINTER, c_bool, c_int, c_uint32
 
+from qds.cstructs import CGRect
+
 
 def precheck(lib: CDLL) -> None:
     lib.CGMainDisplayID()
@@ -40,6 +42,10 @@ def define_api(lib: CDLL) -> None:
 
     lib.CGDisplayIsOnline.argtypes = [CGDirectDisplayID]
     lib.CGDisplayIsOnline.restype = c_bool
+
+    # Retrieving Display Parameters
+    lib.CGDisplayBounds.argtypes = [CGDirectDisplayID]
+    lib.CGDisplayBounds.restype = CGRect
 
     lib.CGDisplayPixelsHigh.argtypes = [CGDirectDisplayID]
     lib.CGDisplayPixelsHigh.restype = c_int

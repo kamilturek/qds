@@ -51,21 +51,25 @@ def get_active_display_list() -> list[int]:
     return list(active_displays)
 
 
-def display_is_active(display_id: int) -> bool:
+def is_display_active(display_id: int) -> bool:
     return lib.CGDisplayIsActive(display_id)
 
 
-def display_is_builtin(display_id: int) -> bool:
+def is_display_builtin(display_id: int) -> bool:
     return lib.CGDisplayIsBuiltin(display_id)
 
 
-def display_is_online(display_id: int) -> bool:
+def is_display_online(display_id: int) -> bool:
     return lib.CGDisplayIsOnline(display_id)
 
 
-def display_pixels_wide(display_id: int) -> int:
+def get_display_bounds(display_id: int):
+    return lib.CGDisplayBounds(display_id)
+
+
+def get_display_pixels_wide(display_id: int) -> int:
     return lib.CGDisplayPixelsWide(display_id)
 
 
-def display_pixels_high(display_id: int) -> int:
+def get_display_pixels_high(display_id: int) -> int:
     return lib.CGDisplayPixelsHigh(display_id)

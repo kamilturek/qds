@@ -1,12 +1,13 @@
 from .api import (
-    display_is_active,
-    display_is_builtin,
-    display_is_online,
-    display_pixels_high,
-    display_pixels_wide,
     get_active_display_count,
     get_active_display_list,
+    get_display_bounds,
+    get_display_pixels_high,
+    get_display_pixels_wide,
     get_main_display_id,
     get_online_display_count,
     get_online_display_list,
+    is_display_active,
+    is_display_builtin,
+    is_display_online,
 )
