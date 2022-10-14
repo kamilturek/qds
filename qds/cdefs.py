@@ -1,6 +1,6 @@
-from ctypes import CDLL, POINTER, c_bool, c_int, c_uint32
+from ctypes import CDLL, POINTER, c_bool, c_int, c_int32, c_uint32, c_void_p
 
-from qds.cstructs import CGRect
+from qds.cstructs import CGConfigureOption, CGRect
 
 
 def precheck(lib: CDLL) -> None:
@@ -16,6 +16,7 @@ def define_api(lib: CDLL) -> None:
 
     CGDirectDisplayID = c_uint32
     CGError = int
+    CGDisplayConfigRef = c_void_p
 
     lib.CGMainDisplayID.argtypes = []
     lib.CGMainDisplayID.restype = c_int
@@ -42,6 +43,27 @@ def define_api(lib: CDLL) -> None:
 
     lib.CGDisplayIsOnline.argtypes = [CGDirectDisplayID]
     lib.CGDisplayIsOnline.restype = c_bool
+
+    # Configuring Displays
+    lib.CGBeginDisplayConfiguration.argtypes = [POINTER(CGDisplayConfigRef)]
+    lib.CGBeginDisplayConfiguration.restype = CGError
+
+    lib.CGCompleteDisplayConfiguration.argtypes = [
+        CGDisplayConfigRef,
+        CGConfigureOption,
+    ]
+    lib.CGCompleteDisplayConfiguration.restype = CGError
+
+    lib.CGCancelDisplayConfiguration.argtypes = [POINTER(CGDisplayConfigRef)]
+    lib.CGCancelDisplayConfiguration.restype = CGError
+
+    lib.CGConfigureDisplayOrigin.argtypes = [
+        POINTER(CGDisplayConfigRef),
+        CGDirectDisplayID,
+        c_int32,
+        c_int32,
+    ]
+    lib.CGConfigureDisplayOrigin.restype = CGError
 
     # Retrieving Display Parameters
     lib.CGDisplayBounds.argtypes = [CGDirectDisplayID]
