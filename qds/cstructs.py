@@ -1,4 +1,4 @@
-from ctypes import Structure, c_double
+from ctypes import Structure, c_double, c_uint32
 
 
 class CGPoint(Structure):
@@ -21,4 +21,10 @@ class CGRect(Structure):
         ("y", c_double),
         ("width", c_double),
         ("height", c_double),
+    ]
+
+
+class CGConfigureOption(Structure):
+    _fields_ = [
+        ("rawValue", c_uint32),
     ]
