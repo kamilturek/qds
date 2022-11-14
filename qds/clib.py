@@ -2,7 +2,7 @@ import platform
 from ctypes import CDLL
 from ctypes.util import find_library
 
-from .cdefs import define_api, precheck
+from qds.cdefs import define_api, precheck
 
 
 def load_library() -> CDLL:

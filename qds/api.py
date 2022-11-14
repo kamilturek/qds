@@ -1,6 +1,6 @@
 from ctypes import byref, c_uint32
 
-from .clib import lib
+from qds.clib import lib
 
 
 def get_main_display_id() -> int:
@@ -8,12 +8,12 @@ def get_main_display_id() -> int:
 
 
 def get_online_display_count() -> int:
-    max_displays = c_uint32(5)
+    max_displays = 5
     display_count = c_uint32()
 
     while True:
-        lib.CGGetOnlineDisplayList(max_displays, None, byref(display_count))
-        if display_count.value != max_displays.value:
+        lib.CGGetOnlineDisplayList(c_uint32(max_displays), None, byref(display_count))
+        if display_count.value != max_displays:
             break
         max_displays *= 2
 
@@ -30,12 +30,12 @@ def get_online_display_list() -> list[int]:
 
 
 def get_active_display_count() -> int:
-    max_displays = c_uint32(5)
+    max_displays = 5
     display_count = c_uint32()
 
     while True:
-        lib.CGGetActiveDisplayList(max_displays, None, byref(display_count))
-        if display_count.value != max_displays.value:
+        lib.CGGetActiveDisplayList(c_uint32(max_displays), None, byref(display_count))
+        if display_count.value != max_displays:
             break
         max_displays *= 2
 
