@@ -15,6 +15,7 @@ jobs:
           fetch-depth: 0
       - name: Check if changelog entry is created
         run: |
+          echo $(git diff --name-only --diff-filter A origin/$GITHUB_BASE_REF | grep -E '^changelog\.d\/.*\.md')
           if [ -n $(git diff --name-only --diff-filter A origin/$GITHUB_BASE_REF | grep -E '^changelog\.d\/.*\.md') ]; then
             echo "PR contains new changelog entry."
           else
