@@ -15,11 +15,4 @@ jobs:
           fetch-depth: 0
       - name: Check if changelog entry is created
         run: |
-          OUTPUT=$(git diff --name-only --diff-filter A origin/$GITHUB_BASE_REF | grep -E '^changelog\.d\/.*\.md')
-          echo to jest output $OUTPUT
-          if [ -n $OUTPUT ]; then
-            echo "PR contains new changelog entry."
-          else
-            echo "PR does not contain new changelog entry. Please use `scriv create`."
-            exit 1
-          fi
+          git diff --name-only --diff-filter A origin/$GITHUB_BASE_REF | grep -E '^changelog\.d\/.*\.md'
