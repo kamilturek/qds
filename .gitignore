@@ -1,5 +1,5 @@
-.python-version
 .vscode/
 
 dist/
 *.pyc
+*.egg-info
