@@ -12,7 +12,7 @@ pip install python-qds
 
 ## Usage
 
-You can use a low-level C API bindings from the `qds.api` module.
+You can use low-level C API bindings from the `qds.api` module.
 
 ```python
 >>> import qds.api
