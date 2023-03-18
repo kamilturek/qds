@@ -27,6 +27,12 @@ To get started with contributing, you should follow these steps:
 
 1. Make your changes to the code.
 1. Write tests to ensure that your changes work as expected.
+1. Create a changelog entry describing your change.
+
+    ```sh
+    scriv create
+    ```
+
 1. Commit your changes and push them to your forked repository.
 1. Create a pull request (PR) from your forked repository to the main branch of
    the original repository.
