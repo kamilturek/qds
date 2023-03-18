@@ -1,0 +1,21 @@
+---
+name: Changelog
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check if changelog entry is created
+        run: |
+          if [ -n $(git diff --name-only --diff-filter A $GITHUB_BASE_REF | grep -E '^changelog\.d\/.*\.md') ]; then
+            echo "PR contains new changelog entry."
+          else
+            echo "PR does not contain new changelog entry. Please use `scriv create`."
+            exit 1
+          fi
