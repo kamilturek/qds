@@ -1,4 +1,4 @@
-from ctypes import byref, c_uint32
+from ctypes import byref, c_uint32, c_void_p
 
 from qds.clib import lib
 
@@ -63,8 +63,9 @@ def is_display_online(display_id: int) -> bool:
     return lib.CGDisplayIsOnline(display_id)
 
 
-def get_display_bounds(display_id: int):
-    return lib.CGDisplayBounds(display_id)
+def get_display_origin(display_id: int) -> tuple[int, int]:
+    bounds = lib.CGDisplayBounds(display_id)
+    return int(bounds.x), int(bounds.y)
 
 
 def get_display_pixels_wide(display_id: int) -> int:
@@ -73,3 +74,54 @@ def get_display_pixels_wide(display_id: int) -> int:
 
 def get_display_pixels_high(display_id: int) -> int:
     return lib.CGDisplayPixelsHigh(display_id)
+
+
+class DisplayConfigurator:
+    _display_configuration: c_void_p | None
+
+    def __init__(self, display_id: int) -> None:
+        self._display_id = display_id
+
+    def __enter__(self):
+        self._begin_configuration()
+        return self
+
+    def __exit__(self, exc, value, traceback):
+        if exc:
+            self._cancel_configuration()
+        else:
+            self._complete_configuration()
+
+    def _begin_configuration(self) -> None:
+        display_configuration = c_void_p()
+
+        if lib.CGBeginDisplayConfiguration(display_configuration) != 0:
+            raise Exception("begin error")
+
+        self._display_configuration = display_configuration
+
+    def _cancel_configuration(self) -> None:
+        if lib.CGCancelDisplayConfiguration(self._display_configuration) != 0:
+            raise Exception("cancel error")
+
+        self._display_configuration = None
+
+    def _complete_configuration(self) -> None:
+        FOR_SESSION = 1
+
+        if (
+            lib.CGCompleteDisplayConfiguration(self._display_configuration, FOR_SESSION)
+            != 0
+        ):
+            raise Exception("complete error")
+
+        self._display_configuration = None
+
+    def set_origin(self, x: int, y: int) -> None:
+        if (
+            lib.CGConfigureDisplayOrigin(
+                self._display_configuration, self._display_id, x, y
+            )
+            != 0
+        ):
+            raise Exception("configure origin error")

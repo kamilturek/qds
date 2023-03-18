@@ -12,15 +12,10 @@ repos:
       - id: black
         args:
           - "--check"
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.10.1
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: 'v0.0.257'
     hooks:
-      - id: isort
-        args: ["--profile", "black"]
-  - repo: https://github.com/pycqa/flake8
-    rev: '5.0.4'
-    hooks:
-    -   id: flake8
+      - id: ruff
   - repo: https://github.com/markdownlint/markdownlint
     rev: 'v0.11.0'
     hooks:

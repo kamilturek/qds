@@ -2,7 +2,9 @@
 name = "python-qds"
 version = "0.2.0"
 description = "A Python wrapper for Quartz Display Services."
-authors = ["Kamil Turek <kamil.turek@hotmail.com>"]
+authors = [
+    { name = "Kamil Turek" }
+]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/kamilturek/qds"
